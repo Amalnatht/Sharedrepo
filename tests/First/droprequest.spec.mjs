@@ -95,7 +95,10 @@ await page.waitForTimeout(4000);
 await page.locator("(//div[@role='listbox']//button)[1]").click();
 await page.waitForTimeout(3000);
 await page.locator("//p[text()='Add']/ancestor::button").click();
-await page.waitForTimeout(15000);
+await page.waitForTimeout(3000);
+await page.locator(`//p[text()="Got it"]`).click();
+await page.waitForTimeout(3000);
+
 }
 
 test('Requestcreation', async () => {
@@ -249,6 +252,9 @@ test('Requestcreation', async () => {
     await page.locator("//input[@name='search-input']").pressSequentially(vendorname);
     await page.waitForTimeout(2000);
     await page.locator("(//label[@for='Select a vendor']//following-sibling::div[1]//div[@role='option'])[1]").click();
+    await page.locator('//label[@for="Dropdown question"]/following-sibling::div//button').click();
+    await page.locator(`//span[text()="Other"]`).click();
+    await page.locator(`//input[@placeholder="Type here"]`).pressSequentially("OTHER INPUT");
     await page.locator("//p[text()='Continue']").click();
     await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
     await page.getByText("Submit").click();
@@ -312,7 +318,6 @@ test('Requestcreation', async () => {
     
     await page.waitForTimeout(4000);
     await linkcontracct(page,"Atlassian")
-    await page.locator('//p[text()="Got it"]').click();
     await logout(page);   
 }
 

@@ -62,7 +62,7 @@ const questionassertionandfillinganswer =async (task, page)=>{
   else if (task.question=="Currency question"){
     // await expect(page.locator("body")).toContainText("Currency question")
     await page.locator(`//label[@for='${task.question}']/following-sibling::div//button`).click();
-    await page.locator("//div//span[text()='USD']").click();
+    // await page.locator("//div//span[text()='USD']").click();
     await page.waitForTimeout(3000);
     await page.locator(`//label[@for='${task.question}']/following-sibling::div//input`).fill("12000");
   }
@@ -97,7 +97,9 @@ await page.waitForTimeout(4000);
 await page.locator("(//div[@role='listbox']//button)[1]").click();
 await page.waitForTimeout(3000);
 await page.locator("//p[text()='Add']/ancestor::button").click();
-await page.waitForTimeout(15000);
+await page.waitForTimeout(3000);
+await page.locator(`//p[text()="Got it"]`).click();
+await page.waitForTimeout(3000);
 }
 
 test('Requestcreation', async () => {
