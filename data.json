@@ -1,0 +1,99 @@
+{
+  "task1details": {
+    "question": "Date question",
+    "typeoftask": "completion",
+    "userrole": "requester",
+    "taskname": "Intake Form"
+  },
+  "task2details": {
+    "question": "Currency question",
+    "typeoftask": "Approval",
+    "userrole": "csm",
+    "taskname": "gjvjy"
+  },
+  "task3details": {
+    "question": "Single choice question",
+    "typeoftask": "Completion",
+    "userrole": "Requester Manager",
+    "taskname": "kqyka"
+  },
+  "task4details": {
+    "question": "Currency question",
+    "typeoftask": "Approval",
+    "userrole": "Engagement Manager",
+    "taskname": "kqdvg"
+  },
+  "task5details": {
+    "question": "Number question",
+    "typeoftask": "Completion",
+    "userrole": "csm",
+    "taskname": "aexkf"
+  },
+  "task6details": {
+    "question": "Attachement question",
+    "typeoftask": "Approval",
+    "userrole": "Selfserve user 2",
+    "taskname": "qqkcd"
+  },
+  "task7details": {
+    "question": "Dropdown question",
+    "typeoftask": "Completion",
+    "userrole": "Enagagement Manager",
+    "taskname": "dmkqv"
+  },
+  "task8details": {
+    "question": "Dropdown question",
+    "typeoftask": "Approval",
+    "userrole": "Requester",
+    "taskname": "yjgca"
+  },
+  "task9details": {
+    "question": "No question selected",
+    "typeoftask": "Completion",
+    "userrole": "Selfserve user 2",
+    "taskname": "ozngl"
+  },
+  "task10details": {
+    "question": "Short text question",
+    "typeoftask": "Completion",
+    "userrole": "Selfserve user 2",
+    "taskname": "xwuid"
+  },
+  "task11details": {
+    "question": "Currency question",
+    "typeoftask": "Completion",
+    "userrole": "Requester",
+    "taskname": "anygp"
+  },
+  "task12details": {
+    "question": "Short text question",
+    "typeoftask": "Approval",
+    "userrole": "Requester Teamowner",
+    "taskname": "rpwze"
+  },
+  "task13details": {
+    "question": "Short text question",
+    "typeoftask": "Completion",
+    "userrole": "Requester Teamowner",
+    "taskname": "jtcgg"
+  },
+  "task14details": {
+    "question": "Short text question",
+    "typeoftask": "Completion",
+    "userrole": "Selfserve user 2",
+    "taskname": "rewom"
+  },
+  "task15details": {
+    "question": "Long text question",
+    "typeoftask": "Completion",
+    "userrole": "csm",
+    "taskname": "Post Intake"
+  },
+  "task16details": {
+    "question": "Number question",
+    "typeoftask": "Approval",
+    "userrole": "Requester manager",
+    "taskname": "vnazm"
+  },
+  "workflowName": "pkpwbkh"
+}
