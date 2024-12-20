@@ -5,46 +5,46 @@
     "taskname": "Intake Form"
   },
   "task2details": {
-    "question": "Long text question",
+    "question": "Single choice question",
     "typeoftask": "Approval",
     "userrole": "csm",
-    "taskname": "bwcgi"
+    "taskname": "cyyou"
   },
   "task3details": {
-    "question": "Date question",
+    "question": "Number question",
     "typeoftask": "Completion",
     "userrole": "Requester Manager",
-    "taskname": "lkiee"
+    "taskname": "yznyp"
   },
   "task4details": {
     "question": "Attachement question",
     "typeoftask": "Approval",
     "userrole": "Engagement Manager",
-    "taskname": "imuez"
+    "taskname": "dlqyx"
   },
   "task5details": {
-    "question": "Userselect question",
+    "question": "Date question",
     "typeoftask": "Approval",
     "userrole": "Selfserve user 2",
-    "taskname": "xxfsi"
+    "taskname": "lxbxw"
   },
   "task6details": {
-    "question": "Date question",
+    "question": "Currency question",
     "typeoftask": "Completion",
     "userrole": "Selfserve user 2",
-    "taskname": "lldlt"
+    "taskname": "baain"
   },
   "task7details": {
-    "question": "Dropdown question",
+    "question": "Date question",
     "typeoftask": "Approval",
     "userrole": "Requester",
-    "taskname": "uuozq"
+    "taskname": "weoqk"
   },
   "task8details": {
-    "question": "Attachement question",
+    "question": "Single choice question",
     "typeoftask": "Completion",
     "userrole": "csm",
     "taskname": "Post Intake"
   },
-  "workflowName": "fnurwsr"
+  "workflowName": "egokkcr"
 }
