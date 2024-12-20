@@ -63,6 +63,7 @@ const questionassertionandfillinganswer =async (task, page)=>{
     // await expect(page.locator("body")).toContainText("Currency question")
     // await page.locator(`//label[@for='${task.question}']/following-sibling::div//button`).click();
     // await page.locator("//div//span[text()='USD']").click();
+    await page.waitForTimeout(3000);
     await page.locator(`//label[@for='${task.question}']/following-sibling::div//input`).fill("12000");
   }
   else if (task.question=="Userselect question"){
@@ -77,6 +78,7 @@ const questionassertionandfillinganswer =async (task, page)=>{
     await checklisttab.click();
     await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
   }
+  await page.waitForTimeout(3000);
 }
 
 const logout = async(page)=>{

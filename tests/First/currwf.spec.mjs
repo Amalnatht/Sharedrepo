@@ -192,6 +192,7 @@ await page.locator("//span[text()='=']/ancestor::div[1]").click();
 // await page.locator(`//span[text()='USD']`).click();
 await page.locator(`//input[@type='number']`).fill("1000");
 await page.locator("(//p[text()='Save'])[2]").click();
+await page.waitForTimeout(2000);
 
 
 //Adding second condition
@@ -216,6 +217,8 @@ await page.locator(`//span[text()='>']/ancestor::div[1]`).click();
 // await page.locator(`//span[text()='USD']`).click();
 await page.locator(`//input[@type='number']`).fill("1000");
 await page.locator("(//p[text()='Save'])[2]").click();
+await page.waitForTimeout(2000);
+
 
 
 //Adding Third condition
@@ -240,6 +243,8 @@ await page.locator(`//span[text()='<']/ancestor::div[1]`).click();
 // await page.locator(`//span[text()='USD']`).click();
 await page.locator(`//input[@type='number']`).fill("1000");
 await page.locator("(//p[text()='Save'])[2]").click();
+await page.waitForTimeout(2000);
+
 
 
 

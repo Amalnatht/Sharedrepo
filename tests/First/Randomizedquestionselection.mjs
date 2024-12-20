@@ -155,5 +155,6 @@ export async function checklist(page){
     await page.locator('//p[text()="Save & Continue"]').click();
     await page.waitForTimeout(5000);
     await page.locator('//p[text()="Save & Continue"]').click();
+    await page.waitForTimeout(2000);
 }
 
