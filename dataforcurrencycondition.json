@@ -1,0 +1,50 @@
+{
+  "task1details": {
+    "typeoftask": "completion",
+    "userrole": "requester",
+    "taskname": "Intake Form"
+  },
+  "task2details": {
+    "question": "Long text question",
+    "typeoftask": "Approval",
+    "userrole": "csm",
+    "taskname": "bwcgi"
+  },
+  "task3details": {
+    "question": "Date question",
+    "typeoftask": "Completion",
+    "userrole": "Requester Manager",
+    "taskname": "lkiee"
+  },
+  "task4details": {
+    "question": "Attachement question",
+    "typeoftask": "Approval",
+    "userrole": "Engagement Manager",
+    "taskname": "imuez"
+  },
+  "task5details": {
+    "question": "Userselect question",
+    "typeoftask": "Approval",
+    "userrole": "Selfserve user 2",
+    "taskname": "xxfsi"
+  },
+  "task6details": {
+    "question": "Date question",
+    "typeoftask": "Completion",
+    "userrole": "Selfserve user 2",
+    "taskname": "lldlt"
+  },
+  "task7details": {
+    "question": "Dropdown question",
+    "typeoftask": "Approval",
+    "userrole": "Requester",
+    "taskname": "uuozq"
+  },
+  "task8details": {
+    "question": "Attachement question",
+    "typeoftask": "Completion",
+    "userrole": "csm",
+    "taskname": "Post Intake"
+  },
+  "workflowName": "fnurwsr"
+}

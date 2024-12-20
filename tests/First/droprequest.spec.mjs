@@ -61,8 +61,8 @@ const questionassertionandfillinganswer =async (task, page)=>{
   }
   else if (task.question=="Currency question"){
     // await expect(page.locator("body")).toContainText("Currency question")
-    await page.locator(`//label[@for='${task.question}']/following-sibling::div//button`).click();
-    await page.locator("//div//span[text()='USD']").click();
+    // await page.locator(`//label[@for='${task.question}']/following-sibling::div//button`).click();
+    // await page.locator("//div//span[text()='USD']").click();
     await page.locator(`//label[@for='${task.question}']/following-sibling::div//input`).fill("12000");
   }
   else if (task.question=="Userselect question"){
