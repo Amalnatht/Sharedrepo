@@ -5,46 +5,46 @@
     "taskname": "Intake Form"
   },
   "task2details": {
-    "question": "Attachement question",
+    "question": "Single choice question",
     "typeoftask": "Approval",
     "userrole": "csm",
-    "taskname": "gsnxc"
+    "taskname": "nstuk"
   },
   "task3details": {
-    "question": "Dropdown question",
+    "question": "Long text question",
     "typeoftask": "Completion",
     "userrole": "Requester Manager",
-    "taskname": "tunyy"
+    "taskname": "cdkzb"
   },
   "task4details": {
-    "question": "Date question",
+    "question": "Dropdown question",
     "typeoftask": "Approval",
     "userrole": "Engagement Manager",
-    "taskname": "sfoun"
+    "taskname": "uppej"
   },
   "task5details": {
-    "question": "Userselect question",
+    "question": "Short text question",
     "typeoftask": "Approval",
     "userrole": "Selfserve user 2",
-    "taskname": "bvacr"
+    "taskname": "pjofl"
   },
   "task6details": {
     "question": "Currency question",
     "typeoftask": "Completion",
     "userrole": "Selfserve user 2",
-    "taskname": "rhljm"
+    "taskname": "hrezd"
   },
   "task7details": {
-    "question": "Short text question",
+    "question": "Number question",
     "typeoftask": "Approval",
     "userrole": "Requester",
-    "taskname": "awaqz"
+    "taskname": "ldrov"
   },
   "task8details": {
-    "question": "Mulitple choice question",
+    "question": "Single choice question",
     "typeoftask": "Completion",
     "userrole": "csm",
     "taskname": "Post Intake"
   },
-  "workflowName": "csazrok"
+  "workflowName": "kafdtec"
 }
