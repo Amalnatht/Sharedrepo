@@ -378,7 +378,6 @@ const Information = {
   workflowName
 }
 // Write the combined object to a JSON file
-fs.writeFileSync('dataforcurrencycondition.json', JSON.stringify(Information, null, 2), 'utf-8');
+fs.writeFileSync('datafordatecondition.json', JSON.stringify(Information, null, 2), 'utf-8');
 
 });
-
