@@ -33,3 +33,28 @@ export function formattedDate(){
       const formattedDate = `${month}/${day}/${year}`;
       return formattedDate;
 }
+export function formattedPreviousDate(){
+  // Fetch the current date
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate()-1);
+
+  // Format the date as mm/dd/yyyy
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const year = currentDate.getFullYear();
+
+  const previousDate = `${month}/${day}/${year}`;
+  return previousDate;
+}
+export function formattedNextDate(){
+  // Fetch the current date
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate()+1);
+  // Format the date as mm/dd/yyyy
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const year = currentDate.getFullYear();
+
+  const nextDate = `${month}/${day}/${year}`;
+  return nextDate;
+}
