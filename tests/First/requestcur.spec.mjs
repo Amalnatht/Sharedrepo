@@ -158,6 +158,8 @@ const questionassertionandfillinganswer =async (task, page)=>{
        await page.waitForTimeout(3000);
        await page.locator(`//label[@for='Currency question']/following-sibling::div//input`).fill(currencyAmountstr);
        await page.waitForTimeout(2000);
+       await page.locator("//p[text()='Continue']").click();
+       await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
        await page.getByText("Submit").click();
        await page.getByText("Go to Request Details").click();
        await page.waitForTimeout(1000);
@@ -211,6 +213,8 @@ const questionassertionandfillinganswer =async (task, page)=>{
        await page.waitForTimeout(3000);
        await page.locator(`//label[@for='Currency question']/following-sibling::div//input`).fill(currencyAmountstr);
        await page.waitForTimeout(2000);
+       await page.locator("//p[text()='Continue']").click();
+       await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
        await page.getByText("Submit").click();
        await page.getByText("Go to Request Details").click();
        await page.waitForTimeout(1000);
@@ -267,6 +271,8 @@ const questionassertionandfillinganswer =async (task, page)=>{
        await page.waitForTimeout(3000);
        await page.locator(`//label[@for='Currency question']/following-sibling::div//input`).fill(currencyAmountstr);
        await page.waitForTimeout(2000);
+       await page.locator("//p[text()='Continue']").click();
+       await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
        await page.getByText("Submit").click();
        await page.getByText("Go to Request Details").click();
        await page.waitForTimeout(1000);
