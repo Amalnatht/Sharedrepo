@@ -14,6 +14,84 @@ import fs from 'fs';
 const filePath = path.join(process.cwd(), 'data.json');
 const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
+let requestidfromdb,requestNo;
+
+const requestIdFromUrl = async(page,url)=>{
+  return await url.substring(37);
+}
+const requestNoFromColumn = async(page,requestid)=>{
+  await page.goto('https://app.spendflo.com/v2/requests');
+  await page.waitForTimeout(3000);
+  let e = await page.locator(`(//a[contains(@href,'${requestid}')]//p)[1]`)
+  let requestno = await e.textContent();
+  return requestno;
+}
+
+const homepagevalidation = async(page,vendorname,requestdbid,wfname,taskname,username)=>{
+  await page.goto("https://app.spendflo.com");
+
+  await page.waitForLoadState('domcontentloaded');
+//pendo guide
+// Wait for the popup to appear with a timeout
+await page.waitForTimeout(7000);
+const pendopopup = await page.locator('//div[@id="pendo-base"]//button[@aria-label="Close"]');
+if (await pendopopup.count() > 0) { // Check if the element exists
+  if (await pendopopup.isEnabled()) { // Check if the element is enabled
+    await pendopopup.click();
+    console.log('Pendo popup closed successfully');
+  } else {
+    console.log('Pendo popup is not enabled');
+  }
+} else {
+  console.log('Pendo popup is not present on the page');
+}
+
+
+  const element = await page.locator(`(//h4[text()='My Requests']/ancestor::div[3]//h3[text()='${vendorname}'])[1]`);
+  const isPresent = await element.count() > 0;
+  console.log('Is element present:', isPresent);
+  const x = page.locator(`//a[contains(@href,'${requestdbid}')]//h3`);
+  await expect(x).toHaveText(vendorname);
+  const y = page.locator(`(//a[contains(@href,'${requestdbid}')]/ancestor::div[3]//h5)[2]`);
+  await expect(y).toHaveText(wfname);
+  const z = page.locator(`(//a[contains(@href,'${requestdbid}')]/ancestor::div[2]//h5)[4]`);
+  await expect(z).toHaveText(taskname);
+  const c = page.locator(`(//a[contains(@href,'${requestdbid}')]/ancestor::div[2]//h5)[6]`);
+  await expect(c).toHaveText(username);
+}
+const requestlistingvalidaton = async(page,requester,vendorname,requestno,wfname,taskname,username)=>{
+  await page.goto("https://app.spendflo.com/v2/requests");
+  await page.waitForTimeout(3000);
+
+  await page.waitForLoadState('domcontentloaded');
+//pendo guide
+// Wait for the popup to appear with a timeout
+await page.waitForTimeout(7000);
+const pendopopup = await page.locator('//div[@id="pendo-base"]//button[@aria-label="Close"]');
+if (await pendopopup.count() > 0) { // Check if the element exists
+  if (await pendopopup.isEnabled()) { // Check if the element is enabled
+    await pendopopup.click();
+    console.log('Pendo popup closed successfully');
+  } else {
+    console.log('Pendo popup is not enabled');
+  }
+} else {
+  console.log('Pendo popup is not present on the page');
+}
+
+
+  await page.locator(`//p[text()='All']`).click();
+  const a = page.locator(`//p[text()='${requestno}']/ancestor::td/following-sibling::td[2]//p`);
+  await expect(a).toHaveText(requester);
+  const b = page.locator(`//p[text()='${requestno}']/ancestor::td/following-sibling::td[1]//p`);
+  await expect(b).toHaveText(vendorname);
+  const c = page.locator(`//p[text()='${requestno}']/ancestor::td/following-sibling::td[7]//p`);
+  await expect(c).toHaveText(wfname);
+  const d = page.locator(`//p[text()='${requestno}']/ancestor::td/following-sibling::td[9]//p`);
+  await expect(d).toHaveText(taskname);
+  const e = page.locator(`//p[text()='${requestno}']/ancestor::td/following-sibling::td[10]//p`);
+  await expect(e).toHaveText(username);
+}
 
 
 
@@ -61,8 +139,8 @@ const questionassertionandfillinganswer =async (task, page)=>{
   }
   else if (task.question=="Currency question"){
     // await expect(page.locator("body")).toContainText("Currency question")
-    // await page.locator(`//label[@for='${task.question}']/following-sibling::div//button`).click();
-    // await page.locator("//div//span[text()='USD']").click();
+    await page.locator(`//label[@for='${task.question}']/following-sibling::div//button`).click();
+    await page.locator("//div//span[text()='USD']").click();
     await page.waitForTimeout(3000);
     await page.locator(`//label[@for='${task.question}']/following-sibling::div//input`).fill("12000");
   }
@@ -103,7 +181,7 @@ await page.waitForTimeout(3000);
 }
 
 test('Requestcreation', async () => {
-    test.setTimeout(1500000); 
+    test.setTimeout(3000000); 
     
     const browser = await chromium.launch({ headless: false });
     const context = await browser.newContext({
@@ -140,6 +218,7 @@ test('Requestcreation', async () => {
 
     //Intake task completion by requester
     let vendorname = "Atlassian Inc";
+    let modifiedvendorname = "Atlassian,Inc";
     await page.locator("//input[@name='search-input']").pressSequentially(vendorname);
     await page.waitForTimeout(2000);
     await page.locator("(//label[@for='Select a vendor']//following-sibling::div[1]//div[@role='option'])[1]").click();
@@ -148,14 +227,21 @@ test('Requestcreation', async () => {
     await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
     await page.getByText("Submit").click();
     await page.getByText("Go to Request Details").click();
-    await page.waitForTimeout(1000);
     const requesturl = await page.url();
+    //storing request id
+    console.log(requesturl)
+    requestidfromdb = await requestIdFromUrl(page,requesturl);
+    //storing requestno
+    requestNo = await requestNoFromColumn(page,requestidfromdb);
+
     await logout(page);
 
 
 
     //Requester Manager login
     await login(page, expect, requestermanageremail,requestermanagerpwd,"requester manager");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task16details.taskname,"selfserve user1")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task16details.taskname,"selfserve user1");
     await page.waitForTimeout(3000);
 
     await page.goto(requesturl);
@@ -172,7 +258,10 @@ test('Requestcreation', async () => {
 
     //Csm Login
     await login(page, expect, csmemail,csmpwd,"csm");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task2details.taskname,"Amalnath T");
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task2details.taskname,"Amalnath T");
     await page.waitForTimeout(3000);
+
 
     await page.goto(requesturl);
     await page.getByText(`Start "${data.task2details.taskname}"`).click();
@@ -188,7 +277,9 @@ test('Requestcreation', async () => {
 
 
         // Em manager Login
-        await login(page, expect, ememail,empwd,"requester manager");
+        await login(page, expect, ememail,empwd,"Engagement manager");
+        await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task4details.taskname,"Ganesh Aravind")
+        await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task4details.taskname,"Ganesh Aravind");
         await page.waitForTimeout(3000);
     
         await page.goto(requesturl);
@@ -203,7 +294,9 @@ test('Requestcreation', async () => {
         await logout(page);
 
       // Requester manager Login
-      await login(page, expect, requestermanageremail,requestermanagerpwd,"Engagement manager");
+      await login(page, expect, requestermanageremail,requestermanagerpwd,"Requester manager");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task3details.taskname,"selfserve user1")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task3details.taskname,"selfserve user1");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -218,7 +311,9 @@ test('Requestcreation', async () => {
       await logout(page);   
 
       // csm Login
-      await login(page, expect, csmemail,csmpwd,"Engagement manager");
+      await login(page, expect, csmemail,csmpwd,"csm");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task5details.taskname,"Amalnath T")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task5details.taskname,"Amalnath T");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -234,7 +329,9 @@ test('Requestcreation', async () => {
 
 
       // user select Login
-      await login(page, expect, requesteremail,requesterpwd,"Engagement manager");
+      await login(page, expect, requesteremail,requesterpwd,"requesterr");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task6details.taskname,"Selfserve user 2")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task6details.taskname,"Selfserve user 2");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -251,6 +348,8 @@ test('Requestcreation', async () => {
 
       // em Login
       await login(page, expect, ememail,empwd,"Engagement manager");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task7details.taskname,"Ganesh Aravind")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task7details.taskname,"Ganesh Aravind");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -267,6 +366,8 @@ test('Requestcreation', async () => {
 
       // requester Login
       await login(page, expect, requesteremail,requesterpwd,"requester");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task8details.taskname,"Selfserve user 2")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task8details.taskname,"Selfserve user 2");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -278,6 +379,10 @@ test('Requestcreation', async () => {
       else {
         await page.getByText("Submit").click();
       }
+
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task11details.taskname,"Selfserve user 2")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task11details.taskname,"Selfserve user 2");
+      await page.goto(requesturl);
 
       await page.waitForTimeout(4000);
       await page.getByText(`Start "${data.task11details.taskname}"`).click();
@@ -292,6 +397,8 @@ test('Requestcreation', async () => {
 
       // Requester teamowner Login
       await login(page, expect, requesterteamowneremail,requesterteamownerpwd,"Team owner");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task12details.taskname,"spendflotest 01")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task12details.taskname,"spendflotest 01");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -308,6 +415,8 @@ test('Requestcreation', async () => {
 
       // Userselect Login
       await login(page, expect, requesteremail,requesterpwd,"User select");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task9details.taskname,"Selfserve user 2")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task9details.taskname,"Selfserve user 2");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -319,6 +428,10 @@ test('Requestcreation', async () => {
       else {
         await page.getByText("Submit").click();
       }
+
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task10details.taskname,"Selfserve user 2")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task10details.taskname,"Selfserve user 2");
+      await page.goto(requesturl);
 
       await page.waitForTimeout(4000);
       await page.getByText(`Start "${data.task10details.taskname}"`).click();
@@ -337,6 +450,8 @@ test('Requestcreation', async () => {
 
       // team owner Login
       await login(page, expect, requesterteamowneremail,requesterteamownerpwd,"Team owner");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task13details.taskname,"spendflotest 01")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task13details.taskname,"spendflotest 01");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -352,6 +467,8 @@ test('Requestcreation', async () => {
 
       // User select Login
       await login(page, expect, requesteremail,requesterpwd,"User select");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task14details.taskname,"Selfserve user 2")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task14details.taskname,"Selfserve user 2");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);
@@ -368,6 +485,8 @@ test('Requestcreation', async () => {
 
       // CSM Login
       await login(page, expect, csmemail,csmpwd,"Csm");
+      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task15details.taskname,"Amalnath T")
+      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task15details.taskname,"Amalnath T");
       await page.waitForTimeout(3000);
   
       await page.goto(requesturl);

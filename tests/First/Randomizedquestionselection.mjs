@@ -39,10 +39,10 @@ export async function randomizedQuestionSelection(page){
         questionpassed="Dropdown question";
         await page.locator('//input[@name="title"]').pressSequentially(questionpassed);
         await page.locator("//p[text()='+ Add Option']/ancestor::button").click();
-        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='1']").fill("A");
+        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='any']").fill("A");
         await page.keyboard.press('Enter');
         await page.locator("//p[text()='+ Add Option']/ancestor::button").click();
-        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='1']").fill("B");
+        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='any']").fill("B");
         await page.keyboard.press('Enter');        
         await page.locator('(//p[text()="Save"])[2]').click();
         await page.waitForTimeout(3000);
@@ -57,10 +57,10 @@ export async function randomizedQuestionSelection(page){
         questionpassed="Single choice question";
         await page.locator('//input[@name="title"]').pressSequentially(questionpassed);
         await page.locator("//p[text()='+ Add Option']/ancestor::button").click();
-        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='1']").fill("A");
+        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='any']").fill("A");
         await page.keyboard.press('Enter');
         await page.locator("//p[text()='+ Add Option']/ancestor::button").click();
-        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='1']").fill("B");
+        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='any']").fill("B");
         await page.keyboard.press('Enter');
         await page.locator('(//p[text()="Save"])[2]').click();
         await page.waitForTimeout(3000);
@@ -74,10 +74,10 @@ export async function randomizedQuestionSelection(page){
         questionpassed="Mulitple choice question";
         await page.locator('//input[@name="title"]').pressSequentially(questionpassed);
         await page.locator("//p[text()='+ Add Option']/ancestor::button").click();
-        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='1']").fill("A");
+        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='any']").fill("A");
         await page.keyboard.press('Enter');
         await page.locator("//p[text()='+ Add Option']/ancestor::button").click();
-        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='1']").fill("B");
+        await page.locator("//label[@for='Add Options']/ancestor::div[1]//input[@step='any']").fill("B");
         await page.keyboard.press('Enter');
         await page.locator('(//p[text()="Save"])[2]').click();
         await page.waitForTimeout(3000);

@@ -1,7 +1,7 @@
 export async function login(page,expect,email, pwd , usertype){
     await page.goto('https://app.spendflo.com');
     
-    const emailfield = page.locator('//input[@name="email"]');
+    const emailfield = page.locator('//input[@name="identifier"]');
     
     await emailfield.click();
     await emailfield.pressSequentially(email);
