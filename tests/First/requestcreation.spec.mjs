@@ -155,7 +155,7 @@ const questionassertionandfillinganswer =async (task, page)=>{
     await checklisttab.click();
     await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
   }
-}
+} 
 
 const logout = async(page)=>{
   await page.locator("//img[@alt='UserCircleUnfilled']/ancestor::div[1]").click();    
@@ -496,9 +496,6 @@ test('Requestcreation', async () => {
     else {
       await page.getByText("Submit").click();
     }
-
-
-    //Audit log validation
 
 
       await page.waitForTimeout(4000);

@@ -62,9 +62,9 @@ const page = await context.newPage();
 context.setDefaultTimeout(30000);
 
 const csmemail = "amalnath@spendflo.com";
-const user2email =  "selfserve-user2@dev-testing.spendflo.io";
+// const user2email =  "selfserve-user2@dev-testing.spendflo.io";
 const csmpwd = "Amalnath123@";
-const user2pwd = "Test@1234";
+// const user2pwd = "Test@1234";
 
 await login(page, expect, csmemail,csmpwd,"admin");
 
@@ -166,7 +166,7 @@ task4details = new Taskdetails(questionselected,"Approval", "Engagement Manager"
 
 
 //Second Phase creation
-phaseCreation(page);
+await phaseCreation(page);
 
 //4th task
 
@@ -452,6 +452,7 @@ await page.keyboard.press('Enter');
 questionselected = await randomizedQuestionSelection(page);
 await checklist(page);
 task16details = new Taskdetails(questionselected,"Approval", "Requester manager",newlycreatedtask);
+
 
 await page.waitForTimeout(7000);
 

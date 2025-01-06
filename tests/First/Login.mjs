@@ -74,6 +74,7 @@ if (await pendopopup.count() > 0) { // Check if the element exists
   orgNameLocator = await page.locator('//img[@alt="Rocket"]/ancestor::div[2]/preceding-sibling::div[1]//span');
   orgNameNavbar = await orgNameLocator.textContent();
   if(orgNameNavbar!='test-org'){
+    console.log("ERROR : org switch didn't happen!")
     process.exit(0);
   }
 
