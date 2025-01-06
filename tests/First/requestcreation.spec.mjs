@@ -93,8 +93,6 @@ if (await pendopopup.count() > 0) { // Check if the element exists
   await expect(e).toHaveText(username);
 }
 
-
-
 const questionassertionandfillinganswer =async (task, page)=>{
  await page.waitForTimeout(4000);
   if(task.question=="Short text question"){
@@ -276,228 +274,231 @@ test('Requestcreation', async () => {
 
 
 
-        // Em manager Login
-        await login(page, expect, ememail,empwd,"Engagement manager");
-        await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task4details.taskname,"Ganesh Aravind")
-        await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task4details.taskname,"Ganesh Aravind");
-        await page.waitForTimeout(3000);
-    
-        await page.goto(requesturl);
-        await page.getByText(`Start "${data.task4details.taskname}"`).click();
-        await questionassertionandfillinganswer(data.task4details, page)
-        if(data.task4details.typeoftask=="Approval"){
-          await page.locator("//p[text()='Approve']/ancestor::button").click();
-        }
-        else {
-          await page.getByText("Submit").click();
-        }
-        await logout(page);
+    // Em manager Login
+    await login(page, expect, ememail,empwd,"Engagement manager");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task4details.taskname,"Ganesh Aravind")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task4details.taskname,"Ganesh Aravind");
+    await page.waitForTimeout(3000);
 
-      // Requester manager Login
-      await login(page, expect, requestermanageremail,requestermanagerpwd,"Requester manager");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task3details.taskname,"selfserve user1")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task3details.taskname,"selfserve user1");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task3details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task3details, page)
-      if(data.task3details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);   
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task4details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task4details, page)
+    if(data.task4details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);
 
-      // csm Login
-      await login(page, expect, csmemail,csmpwd,"csm");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task5details.taskname,"Amalnath T")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task5details.taskname,"Amalnath T");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task5details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task5details, page)
-      if(data.task5details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);   
+    // Requester manager Login
+    await login(page, expect, requestermanageremail,requestermanagerpwd,"Requester manager");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task3details.taskname,"selfserve user1")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task3details.taskname,"selfserve user1");
+    await page.waitForTimeout(3000);
 
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task3details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task3details, page)
+    if(data.task3details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);   
 
-      // user select Login
-      await login(page, expect, requesteremail,requesterpwd,"requesterr");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task6details.taskname,"Selfserve user 2")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task6details.taskname,"Selfserve user 2");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task6details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task6details, page)
-      if(data.task6details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);   
+    // csm Login
+    await login(page, expect, csmemail,csmpwd,"csm");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task5details.taskname,"Amalnath T")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task5details.taskname,"Amalnath T");
+    await page.waitForTimeout(3000);
+
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task5details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task5details, page)
+    if(data.task5details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);   
 
 
-      // em Login
-      await login(page, expect, ememail,empwd,"Engagement manager");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task7details.taskname,"Ganesh Aravind")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task7details.taskname,"Ganesh Aravind");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task7details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task7details, page)
-      if(data.task7details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);   
+    // user select Login
+    await login(page, expect, requesteremail,requesterpwd,"requesterr");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task6details.taskname,"Selfserve user 2")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task6details.taskname,"Selfserve user 2");
+    await page.waitForTimeout(3000);
+
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task6details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task6details, page)
+    if(data.task6details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);   
 
 
-      // requester Login
-      await login(page, expect, requesteremail,requesterpwd,"requester");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task8details.taskname,"Selfserve user 2")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task8details.taskname,"Selfserve user 2");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task8details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task8details, page)
-      if(data.task8details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
+    // em Login
+    await login(page, expect, ememail,empwd,"Engagement manager");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task7details.taskname,"Ganesh Aravind")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task7details.taskname,"Ganesh Aravind");
+    await page.waitForTimeout(3000);
 
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task11details.taskname,"Selfserve user 2")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task11details.taskname,"Selfserve user 2");
-      await page.goto(requesturl);
-
-      await page.waitForTimeout(4000);
-      await page.getByText(`Start "${data.task11details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task11details, page)
-      if(data.task11details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);   
-
-      // Requester teamowner Login
-      await login(page, expect, requesterteamowneremail,requesterteamownerpwd,"Team owner");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task12details.taskname,"spendflotest 01")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task12details.taskname,"spendflotest 01");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task12details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task12details, page)
-      if(data.task12details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);  
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task7details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task7details, page)
+    if(data.task7details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);   
 
 
-      // Userselect Login
-      await login(page, expect, requesteremail,requesterpwd,"User select");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task9details.taskname,"Selfserve user 2")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task9details.taskname,"Selfserve user 2");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task9details.taskname}"`).click();
-      await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
-      if(data.task9details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
+    // requester Login
+    await login(page, expect, requesteremail,requesterpwd,"requester");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task8details.taskname,"Selfserve user 2")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task8details.taskname,"Selfserve user 2");
+    await page.waitForTimeout(3000);
 
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task10details.taskname,"Selfserve user 2")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task10details.taskname,"Selfserve user 2");
-      await page.goto(requesturl);
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task8details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task8details, page)
+    if(data.task8details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
 
-      await page.waitForTimeout(4000);
-      await page.getByText(`Start "${data.task10details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task10details, page)
-      await page.waitForTimeout(5000);
-      if(data.task10details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await page.waitForTimeout(10000);
-      await logout(page);  
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task11details.taskname,"Selfserve user 2")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task11details.taskname,"Selfserve user 2");
+    await page.goto(requesturl);
+
+    await page.waitForTimeout(4000);
+    await page.getByText(`Start "${data.task11details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task11details, page)
+    if(data.task11details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);   
+
+    // Requester teamowner Login
+    await login(page, expect, requesterteamowneremail,requesterteamownerpwd,"Team owner");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task12details.taskname,"spendflotest 01")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task12details.taskname,"spendflotest 01");
+    await page.waitForTimeout(3000);
+
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task12details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task12details, page)
+    if(data.task12details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);  
+
+
+    // Userselect Login
+    await login(page, expect, requesteremail,requesterpwd,"User select");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task9details.taskname,"Selfserve user 2")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task9details.taskname,"Selfserve user 2");
+    await page.waitForTimeout(3000);
+
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task9details.taskname}"`).click();
+    await page.locator('//label[@role="checkbox"][@aria-checked="false"]').click();
+    if(data.task9details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task10details.taskname,"Selfserve user 2")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task10details.taskname,"Selfserve user 2");
+    await page.goto(requesturl);
+
+    await page.waitForTimeout(4000);
+    await page.getByText(`Start "${data.task10details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task10details, page)
+    await page.waitForTimeout(5000);
+    if(data.task10details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await page.waitForTimeout(10000);
+    await logout(page);  
 
 
 
-      // team owner Login
-      await login(page, expect, requesterteamowneremail,requesterteamownerpwd,"Team owner");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task13details.taskname,"spendflotest 01")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task13details.taskname,"spendflotest 01");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task13details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task13details, page)
-      if(data.task13details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);   
+    // team owner Login
+    await login(page, expect, requesterteamowneremail,requesterteamownerpwd,"Team owner");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task13details.taskname,"spendflotest 01")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task13details.taskname,"spendflotest 01");
+    await page.waitForTimeout(3000);
 
-      // User select Login
-      await login(page, expect, requesteremail,requesterpwd,"User select");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task14details.taskname,"Selfserve user 2")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task14details.taskname,"Selfserve user 2");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task14details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task14details, page)
-      await page.waitForTimeout(4000);
-      if(data.task14details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
-      await logout(page);   
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task13details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task13details, page)
+    if(data.task13details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);   
 
-      // CSM Login
-      await login(page, expect, csmemail,csmpwd,"Csm");
-      await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task15details.taskname,"Amalnath T")
-      await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task15details.taskname,"Amalnath T");
-      await page.waitForTimeout(3000);
-  
-      await page.goto(requesturl);
-      await page.getByText(`Start "${data.task15details.taskname}"`).click();
-      await questionassertionandfillinganswer(data.task15details, page)
-      if(data.task15details.typeoftask=="Approval"){
-        await page.locator("//p[text()='Approve']/ancestor::button").click();
-      }
-      else {
-        await page.getByText("Submit").click();
-      }
+    // User select Login
+    await login(page, expect, requesteremail,requesterpwd,"User select");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task14details.taskname,"Selfserve user 2")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task14details.taskname,"Selfserve user 2");
+    await page.waitForTimeout(3000);
+
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task14details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task14details, page)
+    await page.waitForTimeout(4000);
+    if(data.task14details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+    await logout(page);   
+
+    // CSM Login
+    await login(page, expect, csmemail,csmpwd,"Csm");
+    await homepagevalidation(page,modifiedvendorname,requestidfromdb,data.workflowName,data.task15details.taskname,"Amalnath T")
+    await requestlistingvalidaton(page,"Selfserve user 2",modifiedvendorname,requestNo,data.workflowName,data.task15details.taskname,"Amalnath T");
+    await page.waitForTimeout(3000);
+
+    await page.goto(requesturl);
+    await page.getByText(`Start "${data.task15details.taskname}"`).click();
+    await questionassertionandfillinganswer(data.task15details, page)
+    if(data.task15details.typeoftask=="Approval"){
+      await page.locator("//p[text()='Approve']/ancestor::button").click();
+    }
+    else {
+      await page.getByText("Submit").click();
+    }
+
+
+    //Audit log validation
 
 
       await page.waitForTimeout(4000);
